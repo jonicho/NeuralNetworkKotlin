@@ -1,7 +1,6 @@
 package de.jrk.neuralnetwork
 
-import kotlin.math.absoluteValue
-import kotlin.math.pow
+import kotlin.math.*
 
 interface ActivationFunction {
     fun f(x: Double): Double
@@ -22,19 +21,19 @@ class BinaryStep : ActivationFunction {
 }
 
 class Sigmoid : ActivationFunction {
-    override fun f(x: Double) = 1 / (1 + Math.exp(-x))
+    override fun f(x: Double) = 1 / (1 + exp(-x))
     override fun df(x: Double, fx: Double) = if (fx == Double.NaN) f(x).let { it * (1 - it) } else fx * (1 - fx)
     override fun toString() = "sigmoid"
 }
 
 class TanH : ActivationFunction {
-    override fun f(x: Double) = Math.tanh(x)
+    override fun f(x: Double) = tanh(x)
     override fun df(x: Double, fx: Double) = if (fx == Double.NaN) f(x).let { 1 - it.pow(2) } else 1 - fx.pow(2)
     override fun toString() = "tanh"
 }
 
 class ArcTan : ActivationFunction {
-    override fun f(x: Double) = Math.atan(x)
+    override fun f(x: Double) = atan(x)
     override fun df(x: Double, fx: Double) = 1 / (x.pow(2) + 1)
     override fun toString() = "arctan"
 }
@@ -52,19 +51,19 @@ class ReLU : ActivationFunction {
 }
 
 class Sinusoid : ActivationFunction {
-    override fun f(x: Double) = Math.sin(x)
-    override fun df(x: Double, fx: Double) = Math.cos(x)
+    override fun f(x: Double) = sin(x)
+    override fun df(x: Double, fx: Double) = cos(x)
     override fun toString() = "sinusoid"
 }
 
 class Sinc : ActivationFunction {
-    override fun f(x: Double) = if (x == .0) 1.0 else Math.sin(x) / x
-    override fun df(x: Double, fx: Double) = if (x == .0) .0 else Math.cos(x) / x - if (fx == Double.NaN) Math.sin(x) / x.pow(2) else fx / x
+    override fun f(x: Double) = if (x == .0) 1.0 else sin(x) / x
+    override fun df(x: Double, fx: Double) = if (x == .0) .0 else cos(x) / x - if (fx == Double.NaN) sin(x) / x.pow(2) else fx / x
     override fun toString() = "sinc"
 }
 
 class Gaussian : ActivationFunction {
-    override fun f(x: Double) = Math.exp(-x.pow(2))
+    override fun f(x: Double) = exp(-x.pow(2))
     override fun df(x: Double, fx: Double) = -2 * x * if (fx == Double.NaN) f(x) else fx
     override fun toString() = "gaussian"
 }
