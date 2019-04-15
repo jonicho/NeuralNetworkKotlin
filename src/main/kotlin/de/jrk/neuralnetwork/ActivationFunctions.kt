@@ -1,4 +1,4 @@
-package neuralnetwork
+package de.jrk.neuralnetwork
 
 import kotlin.math.absoluteValue
 import kotlin.math.pow

@@ -1,4 +1,4 @@
-package neuralnetwork
+package de.jrk.neuralnetwork
 
 class Matrix(rows: Int, cols: Int) {
     private val data: Array<DoubleArray> = Array(rows) { DoubleArray(cols) }

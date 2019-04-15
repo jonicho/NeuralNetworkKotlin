@@ -1,4 +1,4 @@
-package neuralnetwork
+package de.jrk.neuralnetwork
 
 class NeuralNetwork(vararg neurons: Int, activationFunction: ActivationFunction = Sigmoid()) {
     val weights: Array<Matrix> = Array(neurons.size - 1) { i -> Matrix(neurons[i + 1], neurons[i]) }
